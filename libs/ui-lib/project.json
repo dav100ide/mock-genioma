@@ -1,0 +1,69 @@
+{
+  "name": "ui-lib",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ui-lib/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build-angular": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/libs/ui-lib"],
+      "options": {
+        "project": "libs/ui-lib/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/ui-lib/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/ui-lib/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "build-lib": {
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/dist/libs/ui-lib"],
+      "configurations": {
+        "production": {
+          "commands": [
+            "nx run ui-lib:build-angular:production",
+            "tailwindcss -c libs/ui-lib/tailwind.config.js -i ./libs/ui-lib/src/styles/my-theme.css -o ./dist/libs/ui-lib/themes/my-theme.css -m"
+          ]
+        },
+        "development": {
+          "commands": [
+            "nx run ui-lib:build-angular:development",
+            "tailwindcss -c libs/ui-lib/tailwind.config.js -i ./libs/ui-lib/src/styles/my-theme.css -o ./dist/libs/ui-lib/themes/my-theme.css"
+          ]
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/dist/libs/ui-lib"],
+      "configurations": {
+        "production": {
+          "commands": [
+            "rm -rf dist/libs/ui-lib",
+            "nx run ui-lib:build-lib:production"
+          ],
+          "parallel": false
+        },
+        "development": {
+          "commands": [
+            "rm -rf dist/libs/ui-lib",
+            "nx run ui-lib:build-lib:development"
+          ],
+          "parallel": false
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

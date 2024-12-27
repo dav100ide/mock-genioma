@@ -1,0 +1,6 @@
+@tailwind components;
+@tailwind utilities;
+/* todo capire come mettere far funzionare look di primeNG e la customizzazione */
+:root {
+  /* ... css vars... */
+}
