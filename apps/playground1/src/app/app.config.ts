@@ -3,7 +3,7 @@ import { provideRouter } from '@angular/router';
 import { appRoutes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
-import Aura from '@primeng/themes/aura';
+import { AdarobozThemePreset } from '@mock-genioma/ui-lib';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,7 +12,10 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
-        preset: Aura,
+        preset: AdarobozThemePreset,
+        options: {
+          darkModeSelector: false,
+        },
       },
     }),
   ],

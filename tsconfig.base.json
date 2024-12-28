@@ -15,8 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@mock-genioma/libs/ui-lib": ["libs/ui-lib/src/index.ts"],
-      "@mock-genioma/ui-lib": ["ui-lib/src/index.ts"]
+      "@mock-genioma/ui-lib": ["libs/ui-lib/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

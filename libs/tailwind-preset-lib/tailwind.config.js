@@ -1,11 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   theme: {
-    container: (theme) => ({
-      center: true,
-      padding: theme('spacing.4'),
-    }),
-    extend: {},
+    extend: {
+      container: (theme) => ({
+        center: true,
+        padding: theme('spacing.4'),
+      }),
+    },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-primeui')],
 };
